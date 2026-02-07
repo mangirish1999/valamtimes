@@ -8,6 +8,7 @@ const yesBtn = document.getElementById("real-yes");
 
 const title = document.getElementById("letter-title");
 const catImg = document.getElementById("letter-cat");
+const loading = document.getElementById("dikshaloading");
 const buttons = document.getElementById("letter-buttons");
 const finalText = document.getElementById("final-text");
 
@@ -125,22 +126,21 @@ if (beeImg) {
         // do not auto-reveal main content on error — wait for user to click 'Show me'
     });
 
-    // Remove spin class when the one-shot animation finishes
-    beeImg.addEventListener('animationend', () => {
-        if (beeImg.classList.contains('spin')) beeImg.classList.remove('spin');
-    });
+
 }
 
 // Hide title/cat/buttons initially until the user clicks the bee continue button
 function hideMainContent() {
     if (title) title.style.display = 'none';
     if (catImg) catImg.style.display = 'none';
+    if (loading) loading.style.display = 'none';
     if (buttons) buttons.style.display = 'none';
 }
 
 function showMainContent() {
     if (title) title.style.display = 'block';
     if (catImg) catImg.style.display = 'block';
+    if (loading) loading.style.display = 'block';
     if (buttons) buttons.style.display = 'flex';
     if (titleSub) {
         titleSub.classList.add('show');
@@ -157,7 +157,7 @@ if (beeContinue) {
         if (!answer) {
             answer = document.createElement('p');
             answer.className = 'bee-answer';
-            answer.textContent = 'so that i can bee yours! hehehe';
+            answer.textContent = 'so that i can bee yours! 😘';
         }
 
         // always reveal the answer (CSS hides .bee-answer by default)
@@ -256,6 +256,7 @@ if (yesBtn) {
         // --- restore original behaviour ---
         title.style.display = "none";
         catImg.style.display = "none";
+        loading.style.display = "none";
         buttons.style.display = "none";
 
         windowBox.classList.add("final");
@@ -273,7 +274,7 @@ if (yesBtn) {
         }
 
         // --- ORIGINAL FINAL REVEAL ---
-        title.textContent = "Yippeeee! 💖";
+        title.textContent = "Yayyyyyyy! 💖";
         title.style.display = "block";
 
         if (finalGifs) finalGifs.style.display = "flex";
@@ -347,6 +348,7 @@ function installClickEffects() {
         }
     });
 }
+
 
 // install on load
 installClickEffects();
