@@ -632,3 +632,20 @@ p {
         max-width: 40%;
     }
 }
+
+#envelope-container p {
+    font-size: 32px;   /* desktop */
+}
+
+@media (max-width: 768px) {
+    #envelope-container p {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    #envelope-container p {
+        font-size: 18px;
+    }
+}
+
