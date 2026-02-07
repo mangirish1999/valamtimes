@@ -492,7 +492,7 @@ p {
     .mid,
     .capibara {
         width: 46%;
-        min-width: 60px;
+        min-width: 82px;
     }
     .bee-section img {
         width: 70;
@@ -566,7 +566,7 @@ p {
     }
     /* Capybara gifs (left & right) */
     .capibara {
-        width: 40px;
+        width: 60px;
         min-width: unset;
     }
     /* Yapapa middle gif */
