@@ -37,6 +37,10 @@ body {
     }
 }
 
+.bee-section img.spin {
+    animation: spin 1.2s linear 4;
+}
+
 #envelope {
     width: 200px;
     animation: pulse 1.5s infinite;
@@ -224,10 +228,10 @@ p {
 
 @media (max-width: 720px) {
     .bee-section img {
-        width: 140px;
+        width: 60px;
     }
     .bee-question {
-        font-size: 16px;
+        font-size: 14px;
     }
     .bee-answer {
         font-size: 14px;
@@ -311,7 +315,7 @@ p {
     line-height: 1.4;
     text-align: center;
     display: inline-block;
-    padding: 10px 20px;
+    padding: 0px 20px;
     background-color: rgba(255, 240, 240, 0.5);
     border-radius: 12px;
 }
@@ -488,13 +492,13 @@ p {
     .mid,
     .capibara {
         width: 46%;
-        min-width: 120px;
+        min-width: 60px;
     }
     .bee-section img {
-        width: 120px;
+        width: 70;
     }
     .cat {
-        width: 160px;
+        width: 60px;
     }
     h1 {
         font-size: 20px;
@@ -520,7 +524,7 @@ p {
 }
 
 #center-loading-gif {
-    max-width: 240px;
+    max-width: 120px;
     width: 44%;
 }
 
@@ -540,4 +544,91 @@ p {
 .btn:active {
     /* fallback for browsers that send :active */
     transform: translateY(2px) scale(0.96);
+}
+
+#real-yes,
+.no-btn,
+#bee-continue,
+#bee-so {
+    width: 80px;
+    /* change this value as you like */
+    height: auto;
+}
+
+
+/* ---------- Mobile GIF alignment fix ---------- */
+
+@media (max-width: 520px) {
+    #final-gifs {
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+    /* Capybara gifs (left & right) */
+    .capibara {
+        width: 40px;
+        min-width: unset;
+    }
+    /* Yapapa middle gif */
+    .mid {
+        width: 60px;
+        min-width: unset;
+    }
+}
+
+
+/* 🐝 Bee fly-in from left */
+
+@keyframes beeFlyInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-80px) translateY(10px) scale(0.9) rotate(-8deg);
+    }
+    40% {
+        opacity: 1;
+        transform: translateX(10px) translateY(-6px) scale(1.05) rotate(6deg);
+    }
+    70% {
+        transform: translateX(-4px) translateY(4px) scale(0.98) rotate(-4deg);
+    }
+    100% {
+        transform: translateX(0) translateY(0) scale(1) rotate(0deg);
+    }
+}
+
+
+/* Apply animation */
+
+.bee-fly-in {
+    animation: beeFlyInLeft 0.9s ease-out forwards;
+}
+
+
+/* Align Valamtimes images side by side */
+
+.valamtimes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    /* space between images */
+    flex-wrap: nowrap;
+    /* NEVER stack */
+}
+
+
+/* Make images responsive */
+
+.valamtimes img {
+    max-width: 25%;
+    height: auto;
+}
+
+
+/* Slightly smaller on mobile */
+
+@media (max-width: 520px) {
+    .valamtimes img {
+        max-width: 40%;
+    }
 }
