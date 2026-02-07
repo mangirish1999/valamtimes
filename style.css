@@ -1,0 +1,543 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("heart-bg.jpg");
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+
+/* Envelope Screen */
+
+#envelope-container {
+    text-align: center;
+    cursor: pointer;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#envelope {
+    width: 200px;
+    animation: pulse 1.5s infinite;
+    cursor: pointer;
+}
+
+#letter-container {
+    display: none;
+    position: fixed;
+    inset: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.letter-window {
+    width: 90vw;
+    max-width: 800px;
+    aspect-ratio: 3/2;
+    padding: 20px 20px 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: url("window.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 12px;
+    gap: 1px;
+    padding-top: 180px;
+    transform: scale(1.2);
+    opacity: 0;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+
+/* make letter window a positioning context so inner overlays and gifs align to it */
+
+.letter-window {
+    position: relative;
+}
+
+.letter-window.open {
+    transform: scale(1);
+    opacity: 1;
+}
+
+
+/* Scale down all images inside the letter window to 70% of their original visual size
+   but exclude images that explicitly reference the window background or page background */
+
+.letter-window img:not([src*="window.png"]):not([src*="heart-bg.jpg"]) {
+    /* Removed scaling for normal size */
+    transform: none;
+    transform-origin: center center;
+    display: inline-block;
+}
+
+h1 {
+    font-size: 30px;
+    margin: 0;
+}
+
+p {
+    font-size: 40px;
+}
+
+
+/* Cat */
+
+.cat {
+    width: 250px;
+    margin: 10px 0;
+    transition: width 0.4s ease;
+}
+
+
+/* Bee intro section */
+
+.bee-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.bee-section img {
+    width: 160px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+}
+
+.bee-section img.spin {
+    animation: spin 1.2s linear 1;
+}
+
+.bee-question {
+    font-size: 18px;
+    margin: 0;
+    color: #1a1a1a;
+    font-weight: 700;
+}
+
+.bee-answer {
+    font-size: 16px;
+    margin: 0;
+    color: #6b2b4a;
+}
+
+
+/* hide the bee answer until user reveals it */
+
+.bee-answer {
+    display: none;
+}
+
+
+/* when revealed, style it like the main title */
+
+.bee-answer.revealed {
+    display: block;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 6px 0 12px 0;
+    color: #1a1a1a;
+}
+
+
+/* subtitle under the main title */
+
+.title-sub {
+    font-size: 22px;
+    margin: 8px 0 12px 0;
+    color: #6b2b4a;
+    font-weight: 600;
+}
+
+.title-sub.show {
+    display: block !important;
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+
+/* utility */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* bee extras area (so.png, cat-kiss) */
+
+.bee-extra {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.bee-extra img.mid {
+    max-width: 160px;
+    width: 28%;
+    height: auto;
+}
+
+.bee-extra img#so-control {
+    max-width: 140px;
+    width: 22%;
+    cursor: pointer;
+}
+
+
+/* make image-buttons keyboard-focus visible */
+
+.btn:focus {
+    outline: 3px solid rgba(255, 160, 200, 0.95);
+    outline-offset: 4px;
+}
+
+@media (max-width: 720px) {
+    .bee-section img {
+        width: 140px;
+    }
+    .bee-question {
+        font-size: 16px;
+    }
+    .bee-answer {
+        font-size: 14px;
+    }
+}
+
+.letter-window.final .cat {
+    width: 180px;
+}
+
+
+/* When the bee intro is active, hide the main title, cat and buttons */
+
+.letter-window.bee-visible #letter-title,
+.letter-window.bee-visible .cat,
+.letter-window.bee-visible #letter-buttons {
+    display: none !important;
+}
+
+
+/* Hide main content by default until user clicks 'Show me' */
+
+.letter-window.initial-hidden #letter-title,
+.letter-window.initial-hidden .cat,
+.letter-window.initial-hidden #letter-buttons {
+    display: none !important;
+}
+
+
+/* buttons */
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    position: relative;
+}
+
+.no-wrapper {
+    position: relative;
+}
+
+.btn {
+    width: 120px;
+    cursor: pointer;
+    user-select: none;
+}
+
+
+/* Focus styles for keyboard users */
+
+.btn:focus {
+    outline: 3px solid rgba(255, 160, 200, 0.95);
+    outline-offset: 4px;
+    transform: scale(1.03);
+}
+
+.yes-btn,
+.no-btn {
+    width: 120px;
+    height: auto;
+    display: inline-block;
+}
+
+.yes-btn {
+    position: relative;
+    z-index: 2;
+    transform-origin: center center;
+    transition: transform 0.3s ease;
+}
+
+.no-btn {
+    z-index: 1;
+    position: relative;
+    transition: transform 0.15s ease;
+    cursor: default;
+}
+
+.final-text {
+    font-size: 22px;
+    line-height: 1.4;
+    text-align: center;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgba(255, 240, 240, 0.5);
+    border-radius: 12px;
+}
+
+
+/* Final gifs layout */
+
+
+/* Final gifs layout */
+
+#final-gifs {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+    /* constrain the gifs to the visible center area of the window background */
+    width: min(100%, 760px);
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 2;
+    padding: 0 8px;
+}
+
+#final-gifs img {
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Capybaras at the ends */
+
+.capibara {
+    width: 18%;
+    min-width: 92px;
+}
+
+
+/* Middle images (yapapa + kiss) */
+
+.mid {
+    /* slightly larger than capibara for visual balance */
+    width: 22%;
+    min-width: 120px;
+}
+
+@media (max-width: 720px) {
+    #final-gifs {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    /* Mobile adjustments */
+    @media (max-width: 720px) {
+        .letter-window {
+            padding-top: 120px;
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+        h1 {
+            font-size: 22px;
+        }
+        .cat {
+            width: 180px;
+        }
+        .btn {
+            width: 92px;
+        }
+    }
+    @media (max-width: 420px) {
+        .letter-window {
+            padding-top: 100px;
+        }
+        h1 {
+            font-size: 18px;
+        }
+        .cat {
+            width: 140px;
+        }
+        .btn {
+            width: 84px;
+        }
+    }
+    .capibara,
+    .mid {
+        width: 47%;
+        min-width: 120px;
+    }
+}
+
+
+/* Loading overlay centered */
+
+
+/* Responsive & Accessibility improvements */
+
+
+/* Ensure the letter window adapts on small screens */
+
+.letter-window {
+    max-width: 92vw;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+
+/* Make image buttons easier to tap/focus */
+
+.btn {
+    display: inline-block;
+    min-width: 64px;
+    min-height: 44px;
+    /* touch target guideline */
+    padding: 6px;
+    border-radius: 10px;
+    background: transparent;
+}
+
+
+/* Stronger focus styles for keyboard users */
+
+.btn:focus,
+.btn:focus-visible {
+    outline: 4px solid rgba(255, 120, 170, 0.98);
+    outline-offset: 4px;
+    transform: scale(1.02);
+}
+
+
+/* Make bee-section controls visually clear and touch-friendly */
+
+.bee-section img {
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+
+/* Ensure the bee-answer and kiss animate on reveal and are readable on mobile */
+
+.bee-answer.revealed {
+    animation: fadeIn 260ms ease;
+}
+
+.bee-kiss {
+    animation: fadeIn 260ms ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Final gifs scale down on narrow screens */
+
+#final-gifs {
+    width: min(94%, 760px);
+    gap: 10px;
+}
+
+
+/* Improve middle image sizing on small screens */
+
+@media (max-width: 520px) {
+    .mid,
+    .capibara {
+        width: 46%;
+        min-width: 120px;
+    }
+    .bee-section img {
+        width: 120px;
+    }
+    .cat {
+        width: 160px;
+    }
+    h1 {
+        font-size: 20px;
+    }
+    .bee-answer.revealed {
+        font-size: 20px;
+    }
+}
+
+
+/* Loading overlay centered */
+
+#loading-overlay {
+    position: absolute;
+    inset: 0;
+    display: none;
+    /* default hidden,
+     shown by script when needed */
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 50;
+}
+
+#center-loading-gif {
+    max-width: 240px;
+    width: 44%;
+}
+
+
+/* Click / press visual effect for image-buttons */
+
+.btn {
+    transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+}
+
+.btn.click-effect {
+    transform: translateY(2px) scale(0.96);
+    filter: brightness(0.98) saturate(1.04);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18) inset;
+}
+
+.btn:active {
+    /* fallback for browsers that send :active */
+    transform: translateY(2px) scale(0.96);
+}

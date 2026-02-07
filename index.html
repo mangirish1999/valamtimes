@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Valemtimes Letter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet" />
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Envelope Screen -->
+    <div id="envelope-container" tabindex="0" role="button" aria-label="Open letter">
+        <img src="envelope.png" alt="Envelope" id="envelope" />
+        <p>♡ Valamtimes Letter for You ♡</p>
+    </div>
+
+    <!-- Letter Screen -->
+    <div id="letter-container">
+        <div class="letter-window initial-hidden">
+            <!-- Bee intro: image spins while loading -->
+            <div class="bee-section" id="bee-section">
+                <img id="bee-img" src="bee-mangirish.png" alt="Me dressed like a bee" />
+                <p class="bee-question">Why are you dressed like a bee you ask ?</p>
+                <img src="why.png" id="bee-continue" class="btn yes-btn" alt="Why" tabindex="0" role="button" aria-label="Why" />
+                <img src="so.png" id="bee-so" class="btn yes-btn so-btn" alt="so" tabindex="0" role="button" aria-label="so" style="display:none;" />
+                <div id="bee-extra" class="bee-extra"></div>
+            </div>
+
+            <h1 id="letter-title">Will you be my Valemtimes cutu ?</h1>
+
+            <img src="cat_dance.gif" class="cat" id="letter-cat" />
+
+            <div class="buttons" id="letter-buttons">
+                <img src="yes.png" id="real-yes" class="btn yes-btn" alt="Yes" tabindex="0" role="button" aria-label="Yes" />
+
+                <div class="no-wrapper">
+                    <img src="no.png" class="btn no-btn" alt="No" tabindex="0" role="button" aria-label="No" />
+                </div>
+            </div>
+
+            <!-- CENTER LOADING OVERLAY (used by script.js) -->
+            <div id="loading-overlay" style="display: none; align-items:center; justify-content:center;">
+                <img id="center-loading-gif" src="cat-spinning.gif" alt="loading" style="max-width:240px;" />
+            </div>
+
+            <!-- FINAL GIFS CONTAINER (revealed after Yes) -->
+            <div id="final-gifs" style="display: none; gap:12px; margin-top:12px;">
+                <img src="capibara.gif" class="capibara" alt="capybara-left" />
+                <img src="mmm-japapaaa.gif" class="mid" alt="yapapa" />
+                <img src="capibara.gif" class="capibara" alt="capybara-right" />
+            </div>
+
+            <p id="final-text" class="final-text" style="display: none">
+                <strong>Valentine Date:</strong> Meow Restaurant at 7pm. Dress fancy!
+            </p>
+
+            <!-- AUDIO (used by script.js) -->
+            <audio id="yapapa-audio" src="yapapa-cat-audio-meme-download.mp3"></audio>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
