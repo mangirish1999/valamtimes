@@ -566,12 +566,12 @@ p {
     }
     /* Capybara gifs (left & right) */
     .capibara {
-        width: 60px;
+        width: 80px;
         min-width: unset;
     }
     /* Yapapa middle gif */
     .mid {
-        width: 60px;
+        width: 80px;
         min-width: unset;
     }
 }
